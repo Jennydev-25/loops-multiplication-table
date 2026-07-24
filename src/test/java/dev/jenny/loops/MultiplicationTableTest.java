@@ -4,8 +4,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class MultiplicationTableTest {
 
@@ -52,5 +57,21 @@ public class MultiplicationTableTest {
         String result = multiplicationTable.multiplyBy(0);
 
         assertThat(result, is(equalTo(expected)));
+    }
+
+    @ParameterizedTest(name = "table of {0} ends with \"{1}\"")
+    @MethodSource("lastRowCases")
+    void testMultiplyBy_ShouldEndWithCorrectLastRow(int numb, String expectedLastRow) {
+        String result = multiplicationTable.multiplyBy(numb);
+
+        assertThat(result.endsWith(expectedLastRow), is(true));
+    }
+
+    private static Stream<Arguments> lastRowCases() {
+        return Stream.of(
+                Arguments.of(1, "1 x 10 = 10"),
+                Arguments.of(2, "2 x 10 = 20"),
+                Arguments.of(7, "7 x 10 = 70"),
+                Arguments.of(10, "10 x 10 = 100"));
     }
 }
