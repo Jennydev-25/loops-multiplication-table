@@ -10,11 +10,15 @@ public class MultiplicationTable {
         StringBuilder table = new StringBuilder();
 
         for (int i = FIRST_MULTIPLIER; i <= LAST_MULTIPLIER; i++) {
-            table.append(String.format("%d x %d = %d", numb, i, numb * i));
+            table.append(buildRow(numb, i));
             if (i < LAST_MULTIPLIER)
                 table.append("\n");
         }
 
         return table.toString();
+    }
+
+    private String buildRow(int numb, int multiplier) {
+        return String.format("%d x %d = %d", numb, multiplier, numb * multiplier);
     }
 }
