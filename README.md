@@ -8,8 +8,8 @@ Generación de la **tabla de multiplicar** de un número en Java 21 con Maven, s
 
 ## 📸 Vista rápida
 
-|                   Tests                   |                    Cobertura                    |
-| :---------------------------------------: | :---------------------------------------------: |
+| Tests                                     | Cobertura                                       |
+| ----------------------------------------- | ----------------------------------------------- |
 | ![Tests](assets/images/test-explorer.png) | ![Cobertura](assets/images/coverage-jacoco.png) |
 
 ---
@@ -19,9 +19,9 @@ Generación de la **tabla de multiplicar** de un número en Java 21 con Maven, s
 - [Descripción](#-descripción)
 - [Enunciado](#-enunciado)
 - [Cómo reproducir el proyecto](#-cómo-reproducir-el-proyecto)
-- [Testing](#-testing)
-- [Cobertura de tests](#-cobertura-de-tests)
 - [Estructura del repositorio](#-estructura-del-repositorio)
+- [Testing](#-testing)
+- [Cobertura de tests](#-cobertura-de-tests-coverage)
 - [Tecnologías](#-tecnologías)
 - [Recursos](#-recursos)
 - [Autora](#-autora)
@@ -32,9 +32,9 @@ Generación de la **tabla de multiplicar** de un número en Java 21 con Maven, s
 
 El objetivo de este proyecto es practicar **bucles** en Java generando la **tabla de multiplicar** de un número, aplicando **TDD** (Test-Driven Development). Cada funcionalidad sigue el ciclo completo, que puede seguirse paso a paso en el historial de commits:
 
-🔴 **Red** — escribir primero un test que falla.
-🟢 **Green** — escribir el código mínimo para que ese test pase.
-🔵 **Refactor** — limpiar y mejorar el código, asegurándose de que los tests sigan pasando.
+- 🔴 **Red** — escribir primero un test que falla.
+- 🟢 **Green** — escribir el código mínimo para que ese test pase.
+- 🔵 **Refactor** — limpiar y mejorar el código, asegurándose de que los tests sigan pasando.
 
 Se aplica **separación de responsabilidades**: una clase (`MultiplicationTable`) construye y **devuelve** la tabla como texto —lo que la hace testeable—, y otra (`App`) la presenta por consola.
 
@@ -78,28 +78,67 @@ Crea una clase que tenga la responsabilidad de crear la tabla de multiplicar de 
 
 ### Requisitos previos
 
-- JDK 21 instalado
-- Apache Maven instalado y en el PATH
-- Git para clonar el repositorio
+- **[JDK 21](https://www.oracle.com/java/technologies/downloads/)** instalado — [guía de instalación](https://docs.oracle.com/en/java/javase/21/install/overview-jdk-installation.html)
+- **[Apache Maven](https://maven.apache.org/download.cgi)** instalado y en el `PATH` — [guía de instalación](https://maven.apache.org/install.html)
+- **[Git](https://git-scm.com/downloads)** para clonar el repositorio — [guía de instalación](https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Instalaci%C3%B3n-de-Git)
 
 ### Pasos
 
-```bash
-# 1. Clonar el repositorio
-git clone https://github.com/Jennydev-25/loops-multiplication-table.git
-cd loops-multiplication-table
+**0. Comprueba que tienes Java y Maven instalados** (si algún comando no se reconoce, instálalo desde los enlaces de _Requisitos previos_):
 
-# 2. Ejecutar los tests (genera además el reporte de cobertura de JaCoCo)
+```bash
+java --version
+mvn --version
+```
+
+**1. Clona el repositorio:**
+
+```bash
+git clone https://github.com/Jennydev-25/loops-multiplication-table.git
+```
+
+**2. Entra en la carpeta del proyecto:**
+
+```bash
+cd loops-multiplication-table
+```
+
+**3. Ejecuta los tests** (compila y genera el reporte de cobertura de JaCoCo):
+
+```bash
 mvn test
 ```
 
 El reporte de cobertura se genera en `target/site/jacoco/index.html`, que puedes abrir en el navegador.
 
-Para **ejecutar la aplicación** e imprimir la tabla por consola (sin argumentos usa el 5; con un argumento, el número que le pases):
+**4. Ejecuta la aplicación** e imprime la tabla por consola:
 
 ```bash
-java -cp target/classes dev.jenny.loops.App        # tabla del 5 (por defecto)
-java -cp target/classes dev.jenny.loops.App 7      # tabla del 7
+java -cp target/classes dev.jenny.loops.App        # tabla del 5 (valor por defecto)
+java -cp target/classes dev.jenny.loops.App 7      # tabla del número que le pases (aquí, el 7)
+```
+
+> El flag `-cp` (abreviatura de `-classpath`) le indica a Java dónde buscar las clases ya compiladas (las genera Maven en el paso 3, dentro de `target/classes`). Ver la [documentación oficial del comando `java` (Oracle, Java 21)](https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html).
+
+---
+
+## 📁 Estructura del repositorio
+
+```text
+loops-multiplication-table/
+├── assets/
+│   └── images/
+│       ├── test-explorer.png
+│       └── coverage-jacoco.png
+├── src/
+│   ├── main/java/dev/jenny/loops/
+│   │   ├── App.java
+│   │   └── MultiplicationTable.java
+│   └── test/java/dev/jenny/loops/
+│       └── MultiplicationTableTest.java
+├── .gitignore
+├── pom.xml
+└── README.md
 ```
 
 ---
@@ -130,27 +169,6 @@ Reporte generado con **JaCoCo** tras ejecutar `mvn test`. El informe HTML se enc
 | Métodos       | 100 %     |
 
 ![Cobertura de tests con JaCoCo](assets/images/coverage-jacoco.png)
-
----
-
-## 📁 Estructura del repositorio
-
-```text
-loops-multiplication-table/
-├── assets/
-│   └── images/
-│       ├── test-explorer.png
-│       └── coverage-jacoco.png
-├── src/
-│   ├── main/java/dev/jenny/loops/
-│   │   ├── App.java
-│   │   └── MultiplicationTable.java
-│   └── test/java/dev/jenny/loops/
-│       └── MultiplicationTableTest.java
-├── .gitignore
-├── pom.xml
-└── README.md
-```
 
 ---
 
