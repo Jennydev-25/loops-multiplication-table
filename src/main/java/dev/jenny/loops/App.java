@@ -18,6 +18,9 @@ public final class App {
         int number = args.length > 0 ? Integer.parseInt(args[0]) : 5;
 
         MultiplicationTable multiplicationTable = new MultiplicationTable();
-        System.out.println(multiplicationTable.multiplyBy(number));
+
+        for (String row : multiplicationTable.multiplyBy(number)) {
+            System.out.println(row);
+        }
     }
 }
