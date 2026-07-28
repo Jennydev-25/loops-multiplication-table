@@ -36,7 +36,7 @@ El objetivo de este proyecto es practicar **bucles** en Java generando la **tabl
 - 🟢 **Green** — escribir el código mínimo para que ese test pase.
 - 🔵 **Refactor** — limpiar y mejorar el código, asegurándose de que los tests sigan pasando.
 
-Se aplica **separación de responsabilidades**: una clase (`MultiplicationTable`) construye y **devuelve** la tabla como texto —lo que la hace testeable—, y otra (`App`) la presenta por consola.
+Se aplica **separación de responsabilidades**: una clase (`MultiplicationTable`) construye y **devuelve** la tabla como una **lista de filas** (`List<String>`) —lo que la hace testeable y reutilizable—, y otra (`App`) la recorre y la presenta por consola.
 
 Los requisitos principales son:
 
@@ -145,7 +145,7 @@ loops-multiplication-table/
 
 ## 🧪 Testing
 
-Siguiendo la metodología TDD, la clase `MultiplicationTable` se testea cubriendo todos sus escenarios con **JUnit 5 + Hamcrest**. Los tests comparten una misma instancia creada en el método `setUp()` anotado con `@BeforeEach`, e incluyen un test **parametrizado** (`@ParameterizedTest`):
+Siguiendo la metodología TDD, la clase `MultiplicationTable` se testea cubriendo todos sus escenarios con **JUnit 5 + Hamcrest**. El método `multiplyBy` devuelve una `List<String>` (cada fila es un elemento), de modo que los tests comparan directamente la lista esperada con la obtenida. Los tests comparten una misma instancia creada en el método `setUp()` anotado con `@BeforeEach`, e incluyen un test **parametrizado** (`@ParameterizedTest`):
 
 | Test                                           | Escenario                                                 |
 | ---------------------------------------------- | --------------------------------------------------------- |
