@@ -1,21 +1,22 @@
 package dev.jenny.loops;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class MultiplicationTable {
 
     private final int FIRST_MULTIPLIER = 1;
     private final int LAST_MULTIPLIER = 10;
 
-    public String multiplyBy(int numb) {
+    public List<String> multiplyBy(int numb) {
 
-        StringBuilder table = new StringBuilder();
+        List<String> table = new LinkedList<>();
 
         for (int i = FIRST_MULTIPLIER; i <= LAST_MULTIPLIER; i++) {
-            table.append(buildRow(numb, i));
-            if (i < LAST_MULTIPLIER)
-                table.append("\n");
+            table.add(buildRow(numb, i));
         }
 
-        return table.toString();
+        return table;
     }
 
     private String buildRow(int numb, int multiplier) {
